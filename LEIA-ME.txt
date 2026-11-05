@@ -1,0 +1,85 @@
+DEU PIZZA - GUIA RÁPIDO DO SITE
+================================
+
+COMO ABRIR
+Dê dois cliques no arquivo index.html (abre no navegador).
+Mantenha SEMPRE as pastas juntas, do jeito que estão:
+
+  deu-pizza/
+  |-- index.html        -> a estrutura da página (o "esqueleto")
+  |-- css/estilo.css    -> a aparência (cores, tamanhos, animações)
+  |-- js/script.js      -> o comportamento (carrinho, janelas, menu)
+  |-- img/              -> as fotos das pizzas
+  |-- LEIA-ME.txt       -> este guia
+
+
+O QUE EU QUERO MUDAR? ONDE MEXO?
+--------------------------------
+Trocar telefone / WhatsApp / link do iFood ..... js/script.js  (seção 1)
+Trocar endereço, horário, telefone do contato .. index.html    (seção 3. CONTATO)
+Trocar textos do topo (título, apresentação) ... index.html    (seção 1. TOPO)
+Trocar nome, preço ou descrição de uma pizza ... js/script.js  (seção 2, lista "pizzas")
+Trocar as cores do site ........................ css/estilo.css (seção 1, bloco :root)
+Trocar a foto de uma pizza ..................... coloque a nova foto em img/ e troque
+                                                 o nome em "imagem" na lista do script.js
+
+
+COMO ADICIONAR UMA PIZZA NOVA
+-----------------------------
+1. Coloque a foto (de preferência .webp ou .png com fundo transparente) na pasta img/.
+2. Abra js/script.js, vá na seção "2. LISTA DE PIZZAS".
+3. Copie um bloco inteiro { ... }, cole logo depois do último (lembre da vírgula
+   entre os blocos) e troque nome, preço, foto, descrição e ingredientes.
+Pronto: o cartão aparece sozinho no cardápio.
+
+
+COMO ADICIONAR UMA SEÇÃO NOVA NA MESMA PÁGINA (ex.: "Sobre nós")
+----------------------------------------------------------------
+1. No index.html, copie uma seção parecida (por exemplo a "3. CONTATO") e cole
+   antes do rodapé. Troque o id dela (ex.: id="sobre").
+2. No menu do topo (index.html, procure <nav class="menu-navegacao">), copie uma
+   linha <a ...> e troque o texto e o data-alvo:
+       <a href="#sobre" data-alvo="sobre">Sobre</a>
+3. No css/estilo.css, copie o bloco de estilo da seção parecida e troque os nomes
+   das classes. Se usar "calc(var(--un) * N)", coloque o nome da classe na lista
+   do começo do arquivo (seção 1, onde está "--un").
+O script.js já cuida da rolagem suave e do destaque no menu sozinho.
+
+
+COMO CRIAR UMA PÁGINA NOVA (ex.: sobre.html)
+--------------------------------------------
+1. Copie o index.html e renomeie a cópia (ex.: sobre.html).
+2. Apague o que não quiser e escreva o conteúdo novo.
+3. Mantenha as linhas do <head> que ligam o estilo (css/estilo.css).
+4. Só inclua <script src="js/script.js"> se a página tiver cardápio, carrinho ou menu
+   (o script procura esses elementos). Para páginas simples, não precisa.
+5. Para ligar as páginas, use links normais: <a href="sobre.html">Sobre</a>.
+
+
+NOMES QUE APARECEM NO CÓDIGO (DICIONÁRIO)
+-----------------------------------------
+topo ................... a parte vermelha do início do site
+area-design ............ caixa de 1310 de largura, centralizada, onde o topo é desenhado
+formas-fundo ........... desenho de fundo (vermelho escuro, faixa amarela, onda)
+menu-navegacao ......... menu "Início / Cardápio"
+indicador .............. tracinho amarelo que desliza no menu
+botao-carrinho ......... botão amarelo do carrinho
+botao-chamada .......... botões grandes "Peça agora" e "Ver cardápio"
+pizza-destaque ........ pizza grande do topo
+cardapio ............... seção com os cartões
+cartao-pizza ........... um cartão (foto + informações)
+foto-pizza ............. parte escura do cartão (foto)
+informacoes ............ parte branca do cartão (nome, preço, botão)
+botao-pedir ............ botão vermelho "Pedir"
+secao-contato / cartao-contato ... seção do contato (cartão vermelho)
+fundo-janela / janela .. as janelas (detalhes e carrinho)
+aviso .................. mensagem preta que aparece embaixo
+--un ................... "uma unidade" de medida (1/1310 da largura da tela)
+
+
+DICAS PARA NÃO SE PERDER
+------------------------
+- Todos os arquivos têm um ÍNDICE no começo e comentários grandes separando as partes.
+- Antes de mexer, faça uma cópia da pasta inteira (backup).
+- Mexeu e algo quebrou? Aperte F12 no navegador, aba "Console": o erro aparece lá
+  com o nome do arquivo e a linha.

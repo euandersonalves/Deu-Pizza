@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<!-- ==========================================================================
+     DEU PIZZA - PÁGINA PRINCIPAL (index.html)
+
+     Este arquivo é só a ESTRUTURA do site (o "esqueleto").
+       - A aparência (cores, tamanhos) fica em  css/estilo.css
+       - O comportamento (cliques, carrinho)  fica em  js/script.js
+       - As fotos ficam na pasta  img/
+
+     ÍNDICE DA PÁGINA (na ordem em que aparecem)
+       1. TOPO ............ logo, menu, carrinho, título e pizza grande
+       2. CARDÁPIO ........ os cartões das pizzas (criados pelo script.js)
+       3. CONTATO ......... endereço, horário e telefone
+       4. RODAPÉ
+       5. JANELA DE DETALHES DA PIZZA (escondida até clicar numa pizza)
+       6. JANELA DO CARRINHO (escondida até clicar no carrinho)
+       7. AVISO ........... mensagem pequena que aparece embaixo
+
+     DICA: para achar uma parte, procure pelo número e nome acima.
+     ========================================================================== -->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deu Pizza</title>
+
+  <!-- Fonte Poppins (vem da internet, do Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Arquivo de estilos do site -->
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body>
+
+  <!-- Caixa que envolve todas as seções do site -->
+  <main class="site">
+
+
+    <!-- ======================================================================
+         1. TOPO
+         Parte vermelha do início. Tudo aqui dentro é posicionado por cima de um
+         desenho de fundo (as formas). O id="inicio" é o destino do link "Início".
+         ====================================================================== -->
+    <header class="topo" id="inicio">
+
+      <!-- Área do design (sempre centralizada) -->
+      <div class="area-design">
+
+        <!-- 1.1 Desenho de fundo: vermelho escuro, faixa amarela e a onda bege
+                 que faz a "curva" entre o topo e o cardápio. -->
+        <svg class="formas-fundo" viewBox="-1000 0 3310 1300" aria-hidden="true">
+          <defs>
+            <!-- Degradês (mistura de cores) usados no canto escuro -->
+            <radialGradient id="degrade-canto" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="760" gradientTransform="scale(1.5 1)">
+              <stop offset="0" stop-color="#1a0507"/>
+              <stop offset=".35" stop-color="#4a0b10"/>
+              <stop offset=".6" stop-color="#8c181d"/>
+              <stop offset=".82" stop-color="#c62a29"/>
+              <stop offset="1" stop-color="#d8302e"/>
+            </radialGradient>
+            <linearGradient id="degrade-coluna" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="760">
+              <stop offset="0" stop-color="#1a0507"/>
+              <stop offset=".35" stop-color="#4a0b10"/>
+              <stop offset=".6" stop-color="#8c181d"/>
+              <stop offset=".82" stop-color="#c62a29"/>
+              <stop offset="1" stop-color="#d8302e"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Fundo vermelho liso -->
+          <rect x="-1000" width="3310" height="1300" fill="#d8302e"/>
+          <!-- Parte escura que continua para a esquerda em telas grandes -->
+          <rect x="-1000" width="1000" height="760" fill="url(#degrade-coluna)"/>
+          <!-- Canto escuro com degradê -->
+          <rect width="1310" height="1300" fill="url(#degrade-canto)"/>
+
+          <!-- Faixa amarela atrás da pizza -->
+          <path class="faixa-amarela" d="M-1000 905C-500 905 -260 872 -90 838C-40 826 -14 818 0 812C26 772 92 738 172 714L730 700L730 880C712 905 702 925 691 946C676 985 669 1010 664 1038C658 1060 652 1072 646 1084L640 1190L-1000 1190Z" fill="#f3c22f"/>
+
+          <!-- Onda bege NORMAL (telas pequenas). A tag <animate> faz ela balançar. -->
+          <path class="onda-normal" d="M0 1300V1104Q0 1076 28 1076H298C352 1076 380 1166 450 1166C520 1166 548 1074 600 1074H745C800 1074 805 1166 864 1166C925 1166 940 1076 995 1076H1282Q1310 1076 1310 1104V1300Z" fill="#ece5da">
+            <animate attributeName="d" dur="8s" repeatCount="indefinite" values="M0 1300V1104Q0 1076 28 1076H298C352 1076 380 1166 450 1166C520 1166 548 1074 600 1074H745C800 1074 805 1166 864 1166C925 1166 940 1076 995 1076H1282Q1310 1076 1310 1104V1300Z;M0 1300V1104Q0 1076 28 1076H298C352 1076 385 1150 455 1150C525 1150 548 1074 600 1074H745C800 1074 800 1176 860 1176C925 1176 940 1076 995 1076H1282Q1310 1076 1310 1104V1300Z;M0 1300V1104Q0 1076 28 1076H298C352 1076 380 1166 450 1166C520 1166 548 1074 600 1074H745C800 1074 805 1166 864 1166C925 1166 940 1076 995 1076H1282Q1310 1076 1310 1104V1300Z" keyTimes="0;.5;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/>
+          </path>
+
+          <!-- Onda bege LARGA (telas grandes: vai até as bordas da tela) -->
+          <path class="onda-larga" d="M-1000 1300V1076H298C352 1076 380 1166 450 1166C520 1166 548 1074 600 1074H745C800 1074 805 1166 864 1166C925 1166 940 1076 995 1076H2310V1300Z" fill="#ece5da">
+            <animate attributeName="d" dur="8s" repeatCount="indefinite" values="M-1000 1300V1076H298C352 1076 380 1166 450 1166C520 1166 548 1074 600 1074H745C800 1074 805 1166 864 1166C925 1166 940 1076 995 1076H2310V1300Z;M-1000 1300V1076H298C352 1076 385 1150 455 1150C525 1150 548 1074 600 1074H745C800 1074 800 1176 860 1176C925 1176 940 1076 995 1076H2310V1300Z;M-1000 1300V1076H298C352 1076 380 1166 450 1166C520 1166 548 1074 600 1074H745C800 1074 805 1166 864 1166C925 1166 940 1076 995 1076H2310V1300Z" keyTimes="0;.5;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/>
+          </path>
+        </svg>
+
+        <!-- 1.2 Conteúdo do topo (por cima do desenho de fundo) -->
+        <div class="conteudo-topo">
+
+          <!-- Logo (clicar leva para o início da página) -->
+          <a class="logo" href="#inicio" aria-label="Deu Pizza">
+            <span>DEU PIZZA</span>
+          </a>
+
+          <!-- Menu de navegação.
+               Cada link tem data-alvo="id-da-seção". O script.js lê esse
+               valor e rola a página até o elemento que tem esse id.
+               Para criar um novo link: copie uma linha <a>, troque o texto
+               e o data-alvo (e crie a seção com o mesmo id). -->
+          <nav class="menu-navegacao" id="menu-navegacao" aria-label="Principal">
+            <a class="ativo" href="#inicio" data-alvo="inicio">Início</a>
+            <a href="#titulo-cardapio" data-alvo="titulo-cardapio">Cardápio</a>
+            <!-- Tracinho amarelo que desliza embaixo do link ativo -->
+            <span class="indicador" id="indicador"></span>
+          </nav>
+
+          <!-- Botão amarelo do carrinho (abre a janela do carrinho) -->
+          <button class="botao-carrinho" type="button" id="botao-carrinho" aria-label="Abrir carrinho">
+            <!-- ícone de sacola -->
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+            Carrinho
+            <!-- número de pizzas no carrinho (atualizado pelo script.js) -->
+            <b id="contador-carrinho">0</b>
+          </button>
+
+          <!-- Título grande (uma linha embaixo da outra) -->
+          <h1 class="titulo-principal">
+            <span class="linha">Deu Pizza</span>
+            <span class="linha">Pizzaria</span>
+          </h1>
+
+          <!-- Texto de apresentação -->
+          <p class="texto-apresentacao">
+            Massa artesanal que descansa por 48 horas, mussarela fresca e tomates amassados à mão.
+            Assada em forno a lenha e entregue quentinha na sua porta.
+          </p>
+
+          <!-- Botões "Peça agora" e "Ver cardápio".
+               data-ir-para = id da seção para onde a página vai rolar. -->
+          <button class="botao-chamada amarelo" type="button" data-ir-para="titulo-cardapio">PEÇA AGORA</button>
+          <button class="botao-chamada vermelho" type="button" data-ir-para="titulo-cardapio">VER CARDÁPIO</button>
+
+          <!-- Pizza grande (o script.js mexe um pouquinho nela quando o mouse se move) -->
+          <div class="pizza-destaque" id="pizza-destaque">
+            <img class="imagem-destaque" src="img/pizza-destaque.webp"
+                 alt="Pizza de pepperoni com uma fatia puxando o queijo" width="1109" height="768">
+          </div>
+
+          <!-- Título da seção do cardápio. É o destino do link "Cardápio". -->
+          <h2 class="titulo-secao" id="titulo-cardapio">Pizzas</h2>
+
+        </div> <!-- fim .conteudo-topo -->
+      </div> <!-- fim .area-design -->
+    </header>
+
+
+    <!-- ======================================================================
+         2. CARDÁPIO
+         A grade abaixo começa VAZIA. O script.js lê a lista de pizzas que está
+         no início dele e cria um cartão para cada uma.
+         (Para adicionar uma pizza nova, edite a lista no script.js.)
+         ====================================================================== -->
+    <section class="cardapio" id="cardapio" aria-label="Cardápio de pizzas">
+      <div class="grade-pizzas" id="grade-pizzas">
+        <!-- cartões das pizzas entram aqui -->
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         3. CONTATO
+         Cartão vermelho com duas colunas: frase à esquerda, dados à direita.
+         ====================================================================== -->
+    <section class="secao-contato" id="contato" aria-label="Contato">
+      <div class="cartao-contato aparecer">
+
+        <!-- Coluna da esquerda: frase e botão -->
+        <div class="contato-texto">
+          <h2>Com fome? Venha nos visitar.</h2>
+          <p>
+            Venha até nós, ligue ou peça online. Cada pizza sai do forno a lenha
+            poucos minutos antes de chegar à sua mesa.
+          </p>
+          <button class="botao-chamada amarelo" type="button" data-ir-para="titulo-cardapio">PEÇA AGORA</button>
+        </div>
+
+        <!-- Coluna da direita: endereço, horário e telefone.
+             Para trocar um dado, edite o texto dentro da tag <b>. -->
+        <ul class="lista-contato">
+          <li>
+            <small>Endereço</small>
+            <b>Rua Pinheiro do Paraná<br>Paratibe · João Pessoa, PB<br>CEP 58062-305</b>
+          </li>
+          <li>
+            <small>Horário</small>
+            <b>Todos os dias · 11h às 23h</b>
+          </li>
+          <li>
+            <small>Telefone</small>
+            <b>(11) 4000-0000</b>
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         4. RODAPÉ
+         ====================================================================== -->
+    <footer class="rodape">
+      © Deu Pizza · Paratibe, João Pessoa, PB. Todos os direitos reservados.
+    </footer>
+
+  </main>
+
+
+  <!-- ========================================================================
+       5. JANELA DE DETALHES DA PIZZA
+       Fica escondida. O script.js adiciona a classe "aberta" quando a pessoa
+       clica numa pizza e preenche foto, nome, descrição e ingredientes.
+       ======================================================================== -->
+  <div class="fundo-janela" id="janela-detalhes" aria-hidden="true">
+    <div class="janela" role="dialog" aria-modal="true" aria-labelledby="detalhe-titulo">
+
+      <!-- Botão X (data-fechar = fecha esta janela) -->
+      <button class="botao-fechar" type="button" data-fechar aria-label="Fechar">&times;</button>
+
+      <!-- Foto grande da pizza -->
+      <img class="foto-detalhe" id="detalhe-foto" alt="">
+
+      <div class="corpo-detalhes">
+        <h3 id="detalhe-titulo"></h3>
+        <p class="descricao-detalhe" id="detalhe-descricao"></p>
+
+        <!-- Etiquetas de ingredientes (criadas pelo script.js) -->
+        <div class="ingredientes" id="detalhe-ingredientes"></div>
+
+        <!-- Informações gerais (iguais para todas as pizzas) -->
+        <div class="fatos">
+          <div><b>35 cm</b>8 fatias</div>
+          <div><b>2 a 3</b>pessoas</div>
+          <div><b>~25 min</b>de preparo</div>
+        </div>
+
+        <!-- Quantidade e botão de adicionar ao carrinho -->
+        <div class="rodape-detalhe">
+          <div class="quantidade">
+            <button type="button" data-mudar-quantidade="-1" aria-label="Diminuir">&minus;</button>
+            <output id="detalhe-quantidade">1</output>
+            <button type="button" data-mudar-quantidade="1" aria-label="Aumentar">+</button>
+          </div>
+          <button class="botao botao-amarelo" type="button" id="detalhe-adicionar">Adicionar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ========================================================================
+       6. JANELA DO CARRINHO
+       Mostra as pizzas escolhidas e os botões para finalizar a compra.
+       ======================================================================== -->
+  <div class="fundo-janela" id="janela-carrinho" aria-hidden="true">
+    <div class="janela" role="dialog" aria-modal="true" aria-labelledby="carrinho-titulo">
+
+      <button class="botao-fechar" type="button" data-fechar aria-label="Fechar">&times;</button>
+
+      <div class="corpo-carrinho">
+        <h3 id="carrinho-titulo">Seu carrinho</h3>
+
+        <!-- 6.1 Aparece quando NÃO tem nada no carrinho -->
+        <div class="carrinho-vazio" id="carrinho-vazio">
+          Seu carrinho está vazio.<br>Escolha uma pizza no cardápio.<br>
+          <button class="botao botao-amarelo" type="button" data-fechar>Ver cardápio</button>
+        </div>
+
+        <!-- 6.2 Aparece quando TEM pizzas no carrinho -->
+        <div id="carrinho-conteudo" hidden>
+
+          <!-- Lista de pizzas (criada pelo script.js) -->
+          <div class="lista-carrinho" id="carrinho-lista"></div>
+
+          <!-- Total -->
+          <div class="total-carrinho">
+            <span>Total</span>
+            <strong id="carrinho-total">R$ 0,00</strong>
+          </div>
+
+          <!-- Dados do cliente (vão junto na mensagem do pedido) -->
+          <div class="campos">
+            <input id="campo-nome" type="text" placeholder="Seu nome" autocomplete="name" aria-label="Seu nome">
+            <input id="campo-endereco" type="text" placeholder="Endereço de entrega (opcional)" autocomplete="street-address" aria-label="Endereço de entrega">
+          </div>
+
+          <!-- Botões de finalizar a compra.
+               data-acao diz ao script.js o que fazer ao clicar. -->
+          <div class="finalizar">
+            <h4>Finalizar compra por</h4>
+            <button class="botao botao-whatsapp" type="button" data-acao="whatsapp">WhatsApp</button>
+            <button class="botao botao-ifood" type="button" data-acao="ifood">iFood</button>
+            <button class="botao botao-telefone" type="button" data-acao="ligar">Ligar para o restaurante</button>
+            <button class="botao botao-claro" type="button" data-acao="copiar">Copiar resumo do pedido</button>
+          </div>
+
+          <p class="observacao">No iFood o resumo é copiado para você colar ao montar o pedido.</p>
+          <button class="botao-link" type="button" data-acao="esvaziar">Esvaziar carrinho</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================
+       7. AVISO
+       Mensagem preta pequena (o texto é trocado pelo script.js).
+       ======================================================================== -->
+  <div class="aviso" id="aviso" role="status"></div>
+
+
+  <!-- Arquivo com o comportamento do site (carrinho, janelas, menu...).
+       Fica no final para o HTML já estar carregado quando ele rodar. -->
+  <script src="js/script.js"></script>
+
+</body>
+</html>
